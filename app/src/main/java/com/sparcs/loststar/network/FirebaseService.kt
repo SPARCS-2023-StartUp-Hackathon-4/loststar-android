@@ -24,8 +24,11 @@ class FirebaseService : FirebaseMessagingService() {
 
         Log.d("Firebase", "fcm 메세지 받음")
 
+        //title, body
+
+
         createNotificationChannel()
-        sendNotification("notiTitle", "notiBody")
+        sendNotification(message.data["title"]?:"", message.data["body"]?:"")
     }
 
 
@@ -64,7 +67,7 @@ class FirebaseService : FirebaseMessagingService() {
             .setAutoCancel(true)
 
         with(NotificationManagerCompat.from(this)) {
-            notify(0, builder.build())
+            notify(System.currentTimeMillis().toInt(), builder.build())
         }
     }
 }

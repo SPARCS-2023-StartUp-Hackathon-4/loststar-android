@@ -79,7 +79,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_noti"
-        tools:text="서울시 영등포구" />
+        android:text="서울시 영등포구" />
 
     <com.sparcs.loststar.util.StickyNestedScrollView
         android:id="@+id/stick_nested_scroll_view"
@@ -105,9 +105,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="잃어버린 물건을\n애타게 기다리는...ing" />
+                android:text="잃어버린 물건을\n애타게 기다리는...ing" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingStart="16dp"
+                android:paddingEnd="112dp"
+                android:clipToPadding="false"
                 android:id="@+id/rv_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
