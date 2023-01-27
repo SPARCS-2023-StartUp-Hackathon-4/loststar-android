@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.sparcs.loststar.ui.MainActivity
+import com.sparcs.loststar.ui.main.MainActivity
 import com.sparcs.loststar.R
 
 class FirebaseService : FirebaseMessagingService() {

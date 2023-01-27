@@ -11,7 +11,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.databinding.ActivityLoginBinding
 import com.sparcs.loststar.network.RetrofitClient
-import com.sparcs.loststar.ui.MainActivity
+import com.sparcs.loststar.ui.main.MainActivity
 import com.sparcs.loststar.util.GlideUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
