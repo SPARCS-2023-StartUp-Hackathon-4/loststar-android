@@ -27,6 +27,7 @@ import com.sparcs.loststar.ui.home.adapter.LostOrFindRecyclerViewAdapter
 import com.sparcs.loststar.ui.lostOrFindDetail.LostOrFindDetailActivity
 import com.sparcs.loststar.ui.lostOrFindMore.LostOrFindMoreActivity
 import com.sparcs.loststar.util.CenterZoomLinearLayoutManager
+import com.sparcs.loststar.util.PreferenceUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -58,6 +59,16 @@ class HomeFragment : Fragment() {
 
         if (binding.rvEmergency.onFlingListener == null) {
             snapHelper.attachToRecyclerView(binding.rvEmergency)
+        }
+
+        // userid 세팅
+        CoroutineScope(IO).launch {
+            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                CoroutineScope(Main).launch {
+                    Log.d("userid init", data.id.toString())
+                    PreferenceUtil.prefs.setString("userid", data.id.toString())
+                }
+            }
         }
 
 
