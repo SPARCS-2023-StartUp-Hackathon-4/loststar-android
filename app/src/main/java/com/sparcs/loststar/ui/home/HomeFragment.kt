@@ -20,8 +20,11 @@ import com.sparcs.loststar.network.model.Location
 import com.sparcs.loststar.network.model.LostFound
 import com.sparcs.loststar.network.model.TestEmergency
 import com.sparcs.loststar.network.model.TestLostOrFind
+import com.sparcs.loststar.ui.chatting.chat.ChatInsideActivity
+import com.sparcs.loststar.ui.chatting.chatroom.ChatRoomListRVAdapter
 import com.sparcs.loststar.ui.home.adapter.EmergencyRecyclerViewAdapter
 import com.sparcs.loststar.ui.home.adapter.LostOrFindRecyclerViewAdapter
+import com.sparcs.loststar.ui.lostOrFindDetail.LostOrFindDetailActivity
 import com.sparcs.loststar.ui.lostOrFindMore.LostOrFindMoreActivity
 import com.sparcs.loststar.util.CenterZoomLinearLayoutManager
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +33,8 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
+
+    private val lostOrFoundIdList: List<Long> = mutableListOf()
 
     private val binding: FragmentHomeBinding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
 
@@ -93,6 +98,15 @@ class HomeFragment : Fragment() {
 
         binding.btnMore.setOnClickListener {
             startActivity(Intent(requireContext(), LostOrFindMoreActivity::class.java))
+        }
+
+        // sub 카드 클릭
+        rvSubAdapter.itemClick = object : LostOrFindRecyclerViewAdapter.ItemClick {
+            override fun onClick(id: Int) {
+                val intent = Intent( binding.rvSub.context, LostOrFindDetailActivity::class.java)
+                intent.putExtra("id", id)
+                context?.startActivity(intent)
+            }
         }
     }
 
