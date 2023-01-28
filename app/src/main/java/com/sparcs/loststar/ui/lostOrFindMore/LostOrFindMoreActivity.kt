@@ -2,6 +2,7 @@ package com.sparcs.loststar.ui.lostOrFindMore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.ActivityLoginBinding
@@ -42,5 +43,19 @@ class LostOrFindMoreActivity : AppCompatActivity() {
 
         rvMainAdapter.submitList(list2)
 
+        binding.ivFilter.setOnClickListener {
+            binding.viewShadow.visibility = View.VISIBLE
+            binding.bottomSheet.visibility = View.VISIBLE
+        }
+
+        binding.ivClose.setOnClickListener {
+            dismissBottomSheet()
+        }
+
+    }
+
+    private fun dismissBottomSheet() {
+        binding.viewShadow.visibility = View.GONE
+        binding.bottomSheet.visibility = View.GONE
     }
 }
