@@ -30,13 +30,11 @@ class LostOrFindDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val id = intent.getIntExtra("id", -1)
-        Log.d("id", id.toString())
 
         // 글 상세 정보 조회
         CoroutineScope(Dispatchers.IO).launch {
             RetrofitClient.getApiService().getLostOrFound(id).onSuccess {
                 CoroutineScope(Dispatchers.Main).launch {
-                    Log.d("a", data.location)
                     receiverInfo = UserDto(
                         id = data.writer.id,
                         nickname = data.writer.nickname,
@@ -73,7 +71,6 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                         address = data.address
                     )
                     Log.d("분실물 상세 : sender 정보", senderInfo.toString())
-
                 }
             }
         }
@@ -81,21 +78,18 @@ class LostOrFindDetailActivity : AppCompatActivity() {
         binding.chatCreateBtn.setOnClickListener {
             val userid = PreferenceUtil.prefs.getString("userid", "")
             // DB에 채팅방 정보 저장 (송신자, 수신자)
-            createChatRoom(
-                ChatRoomInfoModel
-                    (
-                    senderId = userid,
-                    senderNickname = senderInfo.nickname,
-                    senderProfile = "https://image.ytn.co.kr/general/jpg/2022/1118/202211181457199274_d.jpg",
-                    senderAddress = senderInfo.address,
-                    receiverId = receiverInfo.id.toString(),
-                    receiverNickname = receiverInfo.nickname,
-                    receiverProfile = "https://image.ytn.co.kr/general/jpg/2022/1118/202211181457199274_d.jpg",
-                    receiverAddress = receiverInfo.address,
-                    lostAndFoundTitle = lostFoundTitle,
-                    lostAndFoundImg = lostFoundImage
-                )
-            )
+            createChatRoom(ChatRoomInfoModel(
+                senderId = senderInfo.id.toString(),
+                senderNickname = senderInfo.nickname,
+                senderProfile = "https://image.ytn.co.kr/general/jpg/2022/1118/202211181457199274_d.jpg",
+                senderAddress = senderInfo.address,
+                receiverId = receiverInfo.id.toString(),
+                receiverNickname = receiverInfo.nickname,
+                receiverProfile = "https://image.ytn.co.kr/general/jpg/2022/1118/202211181457199274_d.jpg",
+                receiverAddress = receiverInfo.address,
+                lostAndFoundTitle = lostFoundTitle,
+                lostAndFoundImg = lostFoundImage
+            ))
             finish()
         }
     }

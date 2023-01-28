@@ -30,7 +30,6 @@ class ChatListRVAdapter(val items: MutableList<ChatModel>) :
                 ViewHolder(view)
             }
         }
-
     }
 
     interface ItemClick{
@@ -49,7 +48,7 @@ class ChatListRVAdapter(val items: MutableList<ChatModel>) :
 
     override fun getItemViewType(position: Int): Int {
         Log.d("userid", userid)
-        return if(items[position].userid == userid.toString()){
+        return if(items[position].userid == userid){
             0
         }else{
             1
@@ -67,7 +66,7 @@ class ChatListRVAdapter(val items: MutableList<ChatModel>) :
 
 
         fun bindItems(item: ChatModel){
-            nickname.text = item.userid
+            nickname.text = item.nickname
             contents.text = item.text
             date.text = item.time
         }
