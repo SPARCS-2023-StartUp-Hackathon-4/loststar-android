@@ -9,8 +9,6 @@ data class ChatRoomInfoModel(
     val receiverNickname : String? = "",
     val receiverProfile : String? = "",
     val receiverAddress : String? = "",
-    val lostAndFoundId : String? = "",
+    val lostAndFoundTitle : String? = "",
     val lostAndFoundImg : String? = "",
-    val lostItemCategory : String? = ""
-
 )

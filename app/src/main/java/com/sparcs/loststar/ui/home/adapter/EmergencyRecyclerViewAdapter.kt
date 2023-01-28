@@ -24,6 +24,11 @@ class EmergencyRecyclerViewAdapter() : ListAdapter<CardResponse, EmergencyRecycl
     inner class EmergencyHolder(private val binding: ItemRecyclerLostFindEmergencyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(data: CardResponse) {
+            binding.root.setOnClickListener {
+                itemClick?.onClick(
+                    data.id.toInt()
+                )
+            }
             GlideUtil.loadRadiusImage(binding.ivMain, data.image, 8)
             binding.tvTitle.text = data.title
             binding.tvStar.text = data.reward
@@ -46,4 +51,11 @@ class EmergencyRecyclerViewAdapter() : ListAdapter<CardResponse, EmergencyRecycl
             }
         }
     }
+
+    interface ItemClick {
+        fun onClick(id: Int)
+    }
+
+    var itemClick: ItemClick? = null
+
 }
