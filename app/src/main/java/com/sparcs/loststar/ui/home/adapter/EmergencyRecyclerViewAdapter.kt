@@ -5,21 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sparcs.loststar.databinding.ItemRecyclerLostFindMainBinding
+import com.sparcs.loststar.databinding.ItemRecyclerLostFindEmergencyBinding
 import com.sparcs.loststar.network.model.TestEmergency
 
 
 class EmergencyRecyclerViewAdapter() : ListAdapter<TestEmergency, EmergencyRecyclerViewAdapter.EmergencyHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmergencyHolder {
-        return EmergencyHolder(ItemRecyclerLostFindMainBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return EmergencyHolder(ItemRecyclerLostFindEmergencyBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: EmergencyHolder, position: Int) {
         holder.setData(currentList[position])
     }
 
-    inner class EmergencyHolder(private val binding: ItemRecyclerLostFindMainBinding) :
+    inner class EmergencyHolder(private val binding: ItemRecyclerLostFindEmergencyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(data: TestEmergency) {
             binding.tvTitle.text = data.mainTitle
