@@ -1,5 +1,8 @@
 package com.sparcs.loststar.network.model
 
+data class IdResponse(
+    val id: Long,
+)
 
 data class LostFoundRequest(
     val type: String,
@@ -25,6 +28,7 @@ data class PageResponse<T>(
 }
 
 data class LostFoundResponse(
+    val writer: MyInfoResponse,
     val title: String,
     val category: String,
     val location: String,
