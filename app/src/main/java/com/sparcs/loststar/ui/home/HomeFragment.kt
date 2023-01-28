@@ -2,6 +2,7 @@ package com.sparcs.loststar.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,22 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.FragmentHomeBinding
+import com.sparcs.loststar.network.RetrofitClient
+import com.sparcs.loststar.network.model.Location
+import com.sparcs.loststar.network.model.LostFound
 import com.sparcs.loststar.network.model.TestEmergency
 import com.sparcs.loststar.network.model.TestLostOrFind
 import com.sparcs.loststar.ui.home.adapter.EmergencyRecyclerViewAdapter
 import com.sparcs.loststar.ui.home.adapter.LostOrFindRecyclerViewAdapter
 import com.sparcs.loststar.ui.lostOrFindMore.LostOrFindMoreActivity
 import com.sparcs.loststar.util.CenterZoomLinearLayoutManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -46,34 +55,27 @@ class HomeFragment : Fragment() {
             snapHelper.attachToRecyclerView(binding.rvEmergency)
         }
 
-        val list = listOf(
-            TestEmergency(1,"","테스트",100,"2020","11:30","우리집"),
-            TestEmergency(2,"","테스트",100,"2020","11:30","우리집"),
-            TestEmergency(3,"","테스트",100,"2020","11:30","우리집"),
-            TestEmergency(4,"","테스트",100,"2020","11:30","우리집"),
-            TestEmergency(5,"","테스트",100,"2020","11:30","우리집")
-        )
 
-        rvEmergencyAdapter.submitList(list)
+
+        // 첫 홈 화면 진입시 긴급 글 가져오기
+        fetchEmergencyList(LostFound.FOUND, rvEmergencyAdapter)
 
         binding.rvSub.layoutManager = LinearLayoutManager(requireContext())
         val rvSubAdapter = LostOrFindRecyclerViewAdapter()
         binding.rvSub.adapter = rvSubAdapter
 
-        val list2 = listOf(
-            TestLostOrFind(1,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(2,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(3,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(4,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(5,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(6,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(7,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(8,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(9,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(10,"","테스트",100,"2020","11:30","우리집"),
-        )
+        // 유실물 긴급, 서브
+        binding.rbFind.setOnClickListener {
+            fetchEmergencyList(LostFound.FOUND, rvEmergencyAdapter)
+            fetchList(Location.강남.name, LostFound.FOUND, rvSubAdapter)
+        }
 
-        rvSubAdapter.submitList(list2)
+        // 분실물 긴급, 서브
+        binding.rbLost.setOnClickListener {
+            fetchEmergencyList(LostFound.LOST, rvEmergencyAdapter)
+            fetchList(Location.강남.name, LostFound.LOST, rvSubAdapter)
+        }
+
 
         binding.stickNestedScrollView.run {
             header = binding.viewDivider
@@ -91,6 +93,28 @@ class HomeFragment : Fragment() {
 
         binding.btnMore.setOnClickListener {
             startActivity(Intent(requireContext(), LostOrFindMoreActivity::class.java))
+        }
+    }
+
+    private fun fetchList(location: String, type: LostFound, rvSubAdapter: LostOrFindRecyclerViewAdapter) {
+        CoroutineScope(IO).launch {
+            RetrofitClient.getApiService().getList(
+                type = type.name, location = location
+            ).onSuccess {
+                CoroutineScope(Main).launch {
+                    rvSubAdapter.submitList(data.content)
+                }
+            }
+        }
+    }
+
+    private fun fetchEmergencyList(type: LostFound, rvEmergencyAdapter: EmergencyRecyclerViewAdapter) {
+        CoroutineScope(IO).launch {
+            RetrofitClient.getApiService().getBoosts(type.name).onSuccess {
+                CoroutineScope(Main).launch {
+                    rvEmergencyAdapter.submitList(data.list)
+                }
+            }
         }
     }
 
