@@ -11,7 +11,7 @@ data class ImageResponse(
 data class LostFoundRequest(
     val type: String,
     val title: String,
-    val category: Category,
+    val category: String,
     val location: String,
     val locationDetail: String,
     val date: String,

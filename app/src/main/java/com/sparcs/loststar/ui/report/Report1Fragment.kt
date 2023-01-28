@@ -44,6 +44,16 @@ class Report1Fragment : Fragment() {
         for(idx in editTextList.indices) {
             editTextList[idx].afterTextChanged { editable ->
                 val text = editable.toString()
+
+                when(idx) {
+                    0 -> (parentFragment as ReportFragment).name = text
+                    1 -> (parentFragment as ReportFragment).category = text
+                    2 -> (parentFragment as ReportFragment).region = text
+                    3 -> (parentFragment as ReportFragment).regionDetail = text
+                    4 -> (parentFragment as ReportFragment).date = text
+                    5 -> (parentFragment as ReportFragment).time = text
+                }
+
                 if(text.isEmpty()) {
                     textViewList[idx].setTextColor(ContextCompat.getColor(requireContext(), R.color.color_7e7e7e))
                     editTextList[idx].setBackgroundResource(R.drawable.bg_rectangle_empty_7e7e7e_radius_14)

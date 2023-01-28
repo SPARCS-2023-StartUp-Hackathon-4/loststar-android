@@ -70,4 +70,6 @@ dependencies {
 
     //Kakao
     implementation "com.kakao.sdk:v2-user:2.12.1" // 카카오 로그인
+
+    implementation 'com.github.nguyenhoanglam:ImagePicker:1.5.5'
 }

@@ -33,7 +33,8 @@ interface ApiService {
     @POST("/lost-found")
     suspend fun postLostOrFound(@Body request: LostFoundRequest): ApiResponse<IdResponse>
 
+    @Multipart
     @POST("/upload")
-    suspend fun uploadImage(@Part("image") image: MultipartBody.Part): ApiResponse<ImageResponse>
+    suspend fun uploadImage(@Part image: MultipartBody.Part): ApiResponse<ImageResponse>
 
 }
