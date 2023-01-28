@@ -42,6 +42,7 @@ class ReportFragment : Fragment() {
 
         binding.buttonNext.setOnClickListener {
             binding.vp.setCurrentItem(++currentPage, true)
+            binding.buttonNext.isEnabled = false
             if(currentPage == 1) binding.progress2.visibility = View.VISIBLE
             if(currentPage == 2) binding.progress3.visibility = View.VISIBLE
         }
