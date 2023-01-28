@@ -3,7 +3,6 @@ package com.sparcs.loststar.network
 import com.skydoves.sandwich.ApiResponse
 import com.sparcs.loststar.network.model.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -26,7 +25,7 @@ interface ApiService {
     suspend fun kakaoLogin(@Body request: KakaoLoginRequest): ApiResponse<KakaoLoginResponse>
 
     @GET("/users/me")
-    suspend fun fetchMyInfo(): ApiResponse<MyInfoResponse>
+    suspend fun fetchMyInfo(): ApiResponse<UserDto>
 
     @GET("/lost-found/{id}")
     suspend fun getLostOrFound(@Path("id") id: Int): ApiResponse<LostFoundResponse>

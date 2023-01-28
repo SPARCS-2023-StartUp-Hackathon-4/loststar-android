@@ -32,7 +32,7 @@ data class PageResponse<T>(
 }
 
 data class LostFoundResponse(
-    val writer: MyInfoResponse,
+    val writer: UserDto,
     val title: String,
     val category: String,
     val location: String,
