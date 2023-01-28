@@ -48,9 +48,10 @@ class ChattingFragment : Fragment() {
         chatRoomListRVAdapter.itemClick = object : ChatRoomListRVAdapter.ItemClick {
 
             override fun onClick(view: View, position: Int) {
-                val intent = Intent( binding.rvChatRoomList.context, ChatInsideActivity::class.java)
+                val intent = Intent( requireContext(), ChatInsideActivity::class.java)
                 intent.putExtra("roomKey", chatRoomListKey[position])
-                context?.startActivity(intent)
+                startActivity(intent)
+
             }
         }
     }
