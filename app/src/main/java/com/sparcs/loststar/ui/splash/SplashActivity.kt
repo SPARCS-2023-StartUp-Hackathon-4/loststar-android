@@ -20,6 +20,7 @@ import com.sparcs.loststar.ui.main.MainActivity
 import com.sparcs.loststar.util.PreferenceUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
@@ -38,6 +39,7 @@ class SplashActivity : AppCompatActivity() {
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 
         CoroutineScope(Dispatchers.IO).launch {
+            delay(800L)
             RetrofitClient.getApiService().fetchMyInfo().onSuccess {
                 CoroutineScope(Dispatchers.Main).launch {
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))

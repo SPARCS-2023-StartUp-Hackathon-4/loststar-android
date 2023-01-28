@@ -99,11 +99,13 @@ class HomeFragment : Fragment() {
                 setStatusBarColorGray()
                 setBackgroundColorGray()
                 changeLayoutColorDark()
+                binding.ivLogo.setImageResource(R.drawable.ic_logo_wide_black)
             }
             freeListener = { _ ->
                 setStatusBarColorBlack()
                 setBackgroundColorBlack()
                 changeLayoutColorLight()
+                binding.ivLogo.setImageResource(R.drawable.ic_logo_wide_white)
             }
         }
 
