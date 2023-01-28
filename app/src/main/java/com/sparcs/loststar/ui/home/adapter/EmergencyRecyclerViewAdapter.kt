@@ -24,7 +24,7 @@ class EmergencyRecyclerViewAdapter() : ListAdapter<CardResponse, EmergencyRecycl
     inner class EmergencyHolder(private val binding: ItemRecyclerLostFindEmergencyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(data: CardResponse) {
-            GlideUtil.loadRadiusImage(binding.ivMain, data.image, 8)
+            GlideUtil.loadImage(binding.ivMain, data.image)
             binding.tvTitle.text = data.title
             binding.tvStar.text = data.reward
             binding.tvDate.text = "${data.date} | ${data.time}"
