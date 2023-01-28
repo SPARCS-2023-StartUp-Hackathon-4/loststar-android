@@ -21,7 +21,7 @@ object GlideUtil {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(view)
                 .load(imageUrl)
-                .transform(CenterCrop(), RoundedCorners(radius))
+                .transform(CenterCrop(), RoundedCorners(radius.px))
                 .into(view)
         }
     }
