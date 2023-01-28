@@ -28,4 +28,10 @@ interface ApiService {
         @Query("size") size: Int = 10
     ): ApiResponse<PageResponse<CardResponse>>
 
+    @POST("/kakao")
+    suspend fun kakaoLogin(@Body request: KakaoLoginRequest): ApiResponse<KakaoLoginResponse>
+
+    @GET("users/me")
+    suspend fun fetchMyInfo(): ApiResponse<MyInfoResponse>
+
 }

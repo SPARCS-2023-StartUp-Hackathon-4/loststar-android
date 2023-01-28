@@ -60,10 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         setStatusBarColorBlack()
 
-        FirebaseMessaging.getInstance().token.addOnSuccessListener {
-            Log.d("Firebase", "$it")
-        }
-
         with(binding) {
             vp.adapter = viewpagerFragmentAdapter
             vp.isUserInputEnabled = false
