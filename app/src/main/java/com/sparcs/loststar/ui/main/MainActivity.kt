@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                         R.color.color_f9f9f9
                     )
                 )
-                ivChatting.setImageResource(R.drawable.ic_menu_store_active)
+                ivChatting.setImageResource(R.drawable.ic_menu_chatting_active)
                 tvChatting.typeface =
                     ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
             }
@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         bottomIconList[0].setImageResource(R.drawable.ic_menu_home_inactive)
         bottomIconList[1].setImageResource(R.drawable.ic_menu_report_inactive)
         bottomIconList[2].setImageResource(R.drawable.ic_menu_store_inactive)
-        bottomIconList[3].setImageResource(R.drawable.ic_menu_store_inactive)
+        bottomIconList[3].setImageResource(R.drawable.ic_menu_chatting_inactive)
         bottomIconList[4].setImageResource(R.drawable.ic_menu_profile_inactive)
 
         bottomTextViewList.forEach { textView ->
