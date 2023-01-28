@@ -42,6 +42,7 @@ data class LostFoundResponse(
     val image: String,
     val description: String,
     val useBoost: Boolean,
+    val reward: Int,
 ) {
 }
 
@@ -59,4 +60,13 @@ data class CardResponse(
 
 data class ListResponse(
     val list: List<CardResponse>
+)
+
+data class UseSpeakerRequest(
+    val id: Long
+)
+
+data class ResolveRequest(
+    val userId: Long,
+    val reward: Int
 )
