@@ -1,5 +1,6 @@
 package com.sparcs.loststar.ui.report
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +15,12 @@ import com.sparcs.loststar.databinding.FragmentReportBinding
 import com.sparcs.loststar.network.RetrofitClient
 import com.sparcs.loststar.network.model.LostFoundRequest
 import com.sparcs.loststar.ui.main.ViewpagerFragmentAdapter
+import com.sparcs.loststar.ui.reportComplete.ReportCompleteActivity
 import com.sparcs.loststar.util.FormDataUtil
 import com.sparcs.loststar.util.ImageUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -87,7 +90,10 @@ class ReportFragment : Fragment() {
                                     boost = false
                                 )
                             ).onSuccess {
-                                Log.d("테스트", "신고 접수 완료!")
+                                CoroutineScope(Main).launch {
+                                    startActivity(Intent(requireContext(), ReportCompleteActivity::class.java))
+                                    requireActivity().finish()
+                                }
                             }
                         }
                     }

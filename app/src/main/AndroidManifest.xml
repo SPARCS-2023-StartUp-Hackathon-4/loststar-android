@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.reportComplete.ReportCompleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.lostOrFindDetail.LostOrFindDetailActivity"
             android:exported="false" />
         <activity
@@ -55,7 +58,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name=".network.FirebaseService"
