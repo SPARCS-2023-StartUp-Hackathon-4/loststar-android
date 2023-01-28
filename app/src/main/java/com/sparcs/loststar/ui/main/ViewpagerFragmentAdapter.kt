@@ -3,7 +3,7 @@ package com.sparcs.loststar.ui.main
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.sparcs.loststar.ui.chatting.ChattingFragment
+import com.sparcs.loststar.ui.chatting.chatroom.ChattingFragment
 import com.sparcs.loststar.ui.home.HomeFragment
 import com.sparcs.loststar.ui.profile.ProfileFragment
 import com.sparcs.loststar.ui.report.ReportFragment
