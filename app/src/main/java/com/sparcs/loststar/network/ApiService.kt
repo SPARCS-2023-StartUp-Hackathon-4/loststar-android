@@ -37,4 +37,12 @@ interface ApiService {
     @POST("/upload")
     suspend fun uploadImage(@Part image: MultipartBody.Part): ApiResponse<ImageResponse>
 
+    @POST("/lost-found/{id}/resolve")
+    suspend fun resolve(
+        @Path("id") id: Int,
+        @Body request: ResolveRequest
+    ): ApiResponse<IdResponse>
+
+    @POST("/notify-all")
+    suspend fun notifyAll(@Body request: UseSpeakerRequest): ApiResponse<Void>
 }

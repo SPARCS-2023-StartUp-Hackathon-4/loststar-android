@@ -28,10 +28,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-//        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//        finish()
-
         CoroutineScope(Dispatchers.IO).launch {
             RetrofitClient.getApiService().fetchMyInfo().onSuccess {
                 CoroutineScope(Dispatchers.Main).launch {

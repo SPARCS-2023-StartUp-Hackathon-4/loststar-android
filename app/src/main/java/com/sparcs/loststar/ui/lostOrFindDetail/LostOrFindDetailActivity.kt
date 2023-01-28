@@ -9,6 +9,7 @@ import com.sparcs.loststar.network.RetrofitClient
 import com.sparcs.loststar.network.model.UserDto
 import com.sparcs.loststar.ui.chatting.chatroom.ChatRoomInfoModel
 import com.sparcs.loststar.util.FBRef
+import com.sparcs.loststar.util.GlideUtil
 import com.sparcs.loststar.util.PreferenceUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +46,19 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                     lostFoundTitle = data.title
                     Log.d("분실물 상세 : receiverInfo", receiverInfo.toString())
                     Log.d("분실물 상세 : 이미지", lostFoundImage)
+
+                    // detail 데이터 바인딩
+                    binding.tvProductName.text = data.title
+                    binding.address.text = data.location
+                    binding.locationDetail.text = data.locationDetail
+                    binding.category.text = data.category
+                    binding.date.text = data.date
+                    binding.time.text = data.time
+                    binding.description.text = data.description
+                    binding.nickname.text = data.writer.nickname
+                    binding.star.text = "${data.reward} 별조각"
+                    GlideUtil.loadRadiusImage(binding.image, data.image, 8)
+                    GlideUtil.loadRadiusImage(binding.profile, data.writer.profile, 8)
                 }
             }
         }
@@ -105,6 +119,4 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                 )
             )
     }
-
-
 }
