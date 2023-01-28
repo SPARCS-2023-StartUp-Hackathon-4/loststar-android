@@ -1,5 +1,6 @@
 package com.sparcs.loststar.ui.lostOrFindDetail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import com.sparcs.loststar.databinding.ActivityLostOrFindDetailBinding
 import com.sparcs.loststar.network.RetrofitClient
 import com.sparcs.loststar.network.model.UserDto
 import com.sparcs.loststar.ui.chatting.chatroom.ChatRoomInfoModel
+import com.sparcs.loststar.ui.main.MainActivity
 import com.sparcs.loststar.util.FBRef
 import com.sparcs.loststar.util.GlideUtil
 import com.sparcs.loststar.util.PreferenceUtil
@@ -90,6 +92,10 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                 lostAndFoundTitle = lostFoundTitle,
                 lostAndFoundImg = lostFoundImage
             ))
+            val intent = Intent(this@LostOrFindDetailActivity, MainActivity::class.java)
+            intent.putExtra("goToChatting", true)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             finish()
         }
     }

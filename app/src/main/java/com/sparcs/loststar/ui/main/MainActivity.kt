@@ -139,6 +139,11 @@ class MainActivity : AppCompatActivity() {
                     ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
             }
         }
+
+        val goToChattingFragment = intent.getBooleanExtra("goToChatting", false)
+        if(goToChattingFragment) {
+            binding.cardViewChatting.performClick()
+        }
     }
 
     private fun initBottomNavi() {
