@@ -58,7 +58,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
 
         <service
             android:name=".network.FirebaseService"
