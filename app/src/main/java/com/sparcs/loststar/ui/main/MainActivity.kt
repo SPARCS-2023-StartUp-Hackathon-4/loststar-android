@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
             vp.adapter = viewpagerFragmentAdapter
             vp.isUserInputEnabled = false
             vp.isSaveEnabled = false
-            vp.isSaveFromParentEnabled = false
 
             cardViewHome.setOnClickListener {
                 setStatusBarColorBlack()
@@ -177,10 +176,5 @@ class MainActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.color_f9f9f9)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.vp.adapter = null
     }
 }

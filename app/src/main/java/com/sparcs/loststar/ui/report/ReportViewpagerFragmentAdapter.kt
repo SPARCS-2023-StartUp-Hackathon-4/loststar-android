@@ -8,7 +8,7 @@ import com.sparcs.loststar.ui.profile.ProfileFragment
 import com.sparcs.loststar.ui.report.ReportFragment
 import com.sparcs.loststar.ui.store.StoreFragment
 
-class ReportViewpagerFragmentAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class ReportViewpagerFragmentAdapter(fragment: Fragment): FragmentStateAdapter(fragment.childFragmentManager, fragment.viewLifecycleOwner.lifecycle) {
 
     // 1. ViewPager2에 연결할 Fragment 들을 생성
     val fragmentList = listOf<Fragment>(Report1Fragment(), Report2Fragment(), Report3Fragment())

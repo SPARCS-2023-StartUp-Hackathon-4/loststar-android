@@ -63,7 +63,6 @@ class ReportFragment : Fragment() {
 
         binding.vp.adapter = viewpagerFragmentAdapter
         binding.vp.isUserInputEnabled = false
-        binding.vp.isSaveEnabled = false
 
         binding.buttonNext.setOnClickListener {
             if (currentPage == 2) {
