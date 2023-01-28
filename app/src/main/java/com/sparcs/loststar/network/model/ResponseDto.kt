@@ -4,6 +4,10 @@ data class IdResponse(
     val id: Long,
 )
 
+data class ImageResponse(
+    val image: String
+)
+
 data class LostFoundRequest(
     val type: String,
     val title: String,
