@@ -14,6 +14,7 @@ import com.sparcs.loststar.databinding.ActivitySplashBinding
 import com.sparcs.loststar.network.RetrofitClient
 import com.sparcs.loststar.ui.login.LoginActivity
 import com.sparcs.loststar.ui.main.MainActivity
+import com.sparcs.loststar.util.PreferenceUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
