@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewChatting.setOnClickListener {
+                setStatusBarColorGray()
                 vp.setCurrentItem(3, false)
                 initBottomNavi()
                 cardViewChatting.setCardBackgroundColor(

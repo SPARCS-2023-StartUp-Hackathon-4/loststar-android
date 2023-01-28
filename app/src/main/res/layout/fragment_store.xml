@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_1c1c1e"
-    android:paddingBottom="80dp"
+    android:paddingBottom="0dp"
     tools:context=".ui.store.StoreFragment">
 
     <ImageView
@@ -240,4 +240,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/demo_store2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

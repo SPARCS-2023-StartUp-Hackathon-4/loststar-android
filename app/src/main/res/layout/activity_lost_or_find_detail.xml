@@ -72,6 +72,29 @@
                     app:layout_constraintStart_toEndOf="@id/profile"
                     app:layout_constraintTop_toBottomOf="@id/nickname" />
 
+                <ImageView
+                    android:id="@+id/iv_rocket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_rocket_detail"
+                    app:layout_constraintBottom_toTopOf="@id/tv_level"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/pre_semibold_600"
+                    android:text="Lv.3"
+                    android:textColor="@color/color_1c1c1e"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/iv_rocket"
+                    app:layout_constraintStart_toStartOf="@id/iv_rocket"
+                    app:layout_constraintTop_toBottomOf="@id/iv_rocket" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,27 +150,35 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="분실물 정보 안내" />
+                        android:fontFamily="@font/pre_medium_500"
+                        android:text="분실물 정보 안내"
+                        android:textColor="#515151"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_location"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
                     app:layout_constraintTop_toBottomOf="@id/ll_lost">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="분실 장소" />
+                        android:fontFamily="@font/pre_medium_500"
+                        android:text="분실 장소"
+                        android:textColor="#7e7e7e"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/locationDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_semibold_600"
                         android:gravity="end"
                         android:text="역삼로 310 이마트 역삼점"
                         android:textColor="@color/black" />
@@ -164,7 +195,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_date"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="31dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:orientation="horizontal"
@@ -173,7 +204,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_medium_500"
                         android:text="분실 일시"
+                        android:textColor="#7e7e7e"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -181,8 +216,10 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_semibold_600"
                         android:text="2023. 01. 27"
                         android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/tv_line"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -190,8 +227,10 @@
                         android:id="@+id/tv_line"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_semibold_600"
                         android:text=" | "
                         android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/time"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -199,8 +238,10 @@
                         android:id="@+id/time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_semibold_600"
                         android:text="22시경"
                         android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -217,7 +258,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll_category"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     app:layout_constraintTop_toBottomOf="@id/view_divider2">
@@ -225,7 +266,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_medium_500"
                         android:text="카테고리"
+                        android:textColor="#7e7e7e"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,8 +288,10 @@
                         android:id="@+id/category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_semibold_600"
                         android:text="가방"
                         android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,23 +307,46 @@
                 <LinearLayout
                     android:id="@+id/ll_reward"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
                     app:layout_constraintTop_toBottomOf="@id/view_divider3">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="보상" />
+                        android:fontFamily="@font/pre_medium_500"
+                        android:text="보상"
+                        android:textColor="#7e7e7e"
+                        android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/star"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="별조각"
-                        android:textColor="@color/black" />
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/ic_star_small"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/star"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/star"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pre_semibold_600"
+                            android:gravity="end"
+                            android:text="별조각"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
@@ -287,11 +357,11 @@
                 android:id="@+id/chat_create_btn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:stateListAnimator="@null"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/bg_solid_black_rounded_16"
                 android:fontFamily="@font/pre_semibold_600"
+                android:stateListAnimator="@null"
                 android:text="연락하기"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent" />
