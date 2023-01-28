@@ -1,6 +1,7 @@
 package com.sparcs.loststar.ui.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -34,6 +35,10 @@ class EmergencyRecyclerViewAdapter() : ListAdapter<CardResponse, EmergencyRecycl
             binding.tvStar.text = data.reward
             binding.tvDate.text = "${data.date} | ${data.time}"
             binding.tvLocation.text = data.location
+
+            if(data.reward == "0") {
+                binding.clStar.visibility = View.INVISIBLE
+            }
         }
     }
 

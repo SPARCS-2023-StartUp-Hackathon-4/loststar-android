@@ -38,6 +38,10 @@ class LostOrFindRecyclerViewAdapter() : ListAdapter<CardResponse, LostOrFindRecy
             binding.tvDate.text = "${data.date} | ${data.time}"
             binding.tvLocation.text = data.location
             GlideUtil.loadRadiusImage(binding.ivMain, data.image, 16)
+
+            if(data.reward == "0") {
+                binding.clStar.visibility = View.INVISIBLE
+            }
         }
     }
 

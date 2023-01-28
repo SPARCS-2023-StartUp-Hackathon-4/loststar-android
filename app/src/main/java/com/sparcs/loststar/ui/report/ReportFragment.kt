@@ -91,7 +91,9 @@ class ReportFragment : Fragment() {
                                 )
                             ).onSuccess {
                                 CoroutineScope(Main).launch {
-                                    startActivity(Intent(requireContext(), ReportCompleteActivity::class.java))
+                                    val intent = Intent(requireContext(), ReportCompleteActivity::class.java)
+                                    intent.putExtra("reportId",data.id.toInt())
+                                    startActivity(intent)
                                     requireActivity().finish()
                                 }
                             }
