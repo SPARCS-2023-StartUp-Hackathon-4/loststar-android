@@ -210,8 +210,16 @@
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout
+                    android:layout_marginStart="230dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/ic_case"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"/>
 
                     <TextView
                         android:gravity="end"
@@ -220,8 +228,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
-
                 </LinearLayout>
+
+
+
 
 
             </LinearLayout>
@@ -254,6 +264,16 @@
 
             </LinearLayout>
 
+
+            <Button
+                android:text="연락하기"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/pre_medium_500"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
 
 
 
