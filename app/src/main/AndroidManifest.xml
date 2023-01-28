@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".LostOrFindDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatInsideActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.lostOrFindMore.LostOrFindMoreActivity"
             android:exported="false" />
         <activity
