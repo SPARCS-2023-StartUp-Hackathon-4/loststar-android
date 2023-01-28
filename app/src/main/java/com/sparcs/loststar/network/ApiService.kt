@@ -33,4 +33,7 @@ interface ApiService {
     @GET("/lost-found/{id}")
     suspend fun getLostOrFound(@Path("id") id: Int): ApiResponse<LostFoundResponse>
 
+    @POST("/lost-found")
+    suspend fun postLostOrFound(@Body request: LostFoundRequest): ApiResponse<IdResponse>
+
 }
