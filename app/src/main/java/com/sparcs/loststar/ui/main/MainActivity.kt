@@ -13,6 +13,8 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.ActivityMainBinding
+import com.sparcs.loststar.util.PreferenceUtil
+import com.sparcs.loststar.util.PreferenceUtil.Companion.prefs
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        prefs = PreferenceUtil(applicationContext)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
