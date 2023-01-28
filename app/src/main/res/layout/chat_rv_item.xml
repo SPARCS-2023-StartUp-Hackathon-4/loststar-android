@@ -13,7 +13,7 @@
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bg_solid_black_rounded_10"
         android:fontFamily="@font/pre_medium_500"
         android:paddingHorizontal="8dp"

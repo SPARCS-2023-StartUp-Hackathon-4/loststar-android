@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:paddingBottom="100dp">
 
         <TextView
             android:id="@+id/tv_step"
@@ -85,12 +85,13 @@
         <EditText
             android:id="@+id/et_detail"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_rectangle_empty_7e7e7e_radius_14"
             android:fontFamily="@font/pre_medium_500"
             android:hint="내용을 입력해주세요."
             android:inputType="textMultiLine"
+            android:minHeight="48dp"
             android:paddingHorizontal="16dp"
             android:textColor="@color/white"
             android:textColorHint="#7e7e7e"

@@ -17,6 +17,16 @@ object GlideUtil {
         }
     }
 
+    fun loadCircleImage(view: ImageView, imageUrl: String?) {
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(view)
+                .load(imageUrl)
+                .centerCrop()
+                .circleCrop()
+                .into(view)
+        }
+    }
+
     fun loadRadiusImage(view: ImageView, imageUrl: String?, radius: Int) {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(view)

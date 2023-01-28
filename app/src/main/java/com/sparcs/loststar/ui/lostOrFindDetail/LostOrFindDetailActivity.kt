@@ -56,7 +56,7 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                     binding.nickname.text = data.writer.nickname
                     binding.star.text = "${data.reward} 별조각"
                     GlideUtil.loadRadiusImage(binding.image, data.image, 8)
-                    GlideUtil.loadRadiusImage(binding.profile, data.writer.profile, 8)
+                    GlideUtil.loadCircleImage(binding.profile, data.writer.profile)
                 }
             }
         }

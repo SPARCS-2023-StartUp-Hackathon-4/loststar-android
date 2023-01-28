@@ -67,7 +67,7 @@ class ChatInsideActivity : AppCompatActivity() {
             readChat(roomKey)
         }
 
-        val inputBtn = findViewById<Button>(R.id.btn_messageInputBtn)
+        val inputBtn = findViewById<ImageView>(R.id.btn_messageInputBtn)
         val inputText = findViewById<EditText>(R.id.edt_messageEdit)
         inputBtn.setOnClickListener {
             Handler().postDelayed({
@@ -102,9 +102,10 @@ class ChatInsideActivity : AppCompatActivity() {
                 .push()
                 .setValue(
                     ChatModel(
-                        nickname,
-                        inputText,
-                        curTime
+                        userid = userid,
+                        nickname = nickname,
+                        text = inputText,
+                        time = curTime
                     )
                 )
         }
