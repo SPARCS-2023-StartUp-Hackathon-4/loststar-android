@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.kakao.sdk.common.util.Utility
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.onSuccess
@@ -29,6 +32,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.color_1c1c1e)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+
         CoroutineScope(Dispatchers.IO).launch {
             RetrofitClient.getApiService().fetchMyInfo().onSuccess {
                 CoroutineScope(Dispatchers.Main).launch {
