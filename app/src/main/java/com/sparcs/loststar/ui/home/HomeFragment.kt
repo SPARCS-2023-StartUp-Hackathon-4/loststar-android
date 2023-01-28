@@ -38,8 +38,13 @@ class HomeFragment : Fragment() {
         val rvEmergencyAdapter = EmergencyRecyclerViewAdapter()
         binding.rvEmergency.adapter = rvEmergencyAdapter
 
+
+
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.rvEmergency)
+
+        if (binding.rvEmergency.onFlingListener == null) {
+            snapHelper.attachToRecyclerView(binding.rvEmergency)
+        }
 
         val list = listOf(
             TestEmergency(1,"","테스트",100,"2020","11:30","우리집"),
