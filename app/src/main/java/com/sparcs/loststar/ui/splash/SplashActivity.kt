@@ -29,21 +29,21 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-        finish()
+//        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+//        finish()
 
-//        CoroutineScope(Dispatchers.IO).launch {
-//            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
-//                CoroutineScope(Dispatchers.Main).launch {
-//                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                    finish()
-//                }
-//            }.onFailure {
-//                LostStarApplication.encryptedPrefs.saveAccessToken("")
-//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-//                finish()
-//            }
-//        }
+        CoroutineScope(Dispatchers.IO).launch {
+            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                CoroutineScope(Dispatchers.Main).launch {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
+                }
+            }.onFailure {
+                LostStarApplication.encryptedPrefs.saveAccessToken("")
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                finish()
+            }
+        }
 
 
     }

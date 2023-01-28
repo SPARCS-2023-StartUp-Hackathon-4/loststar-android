@@ -27,6 +27,7 @@ class Report2Fragment : Fragment() {
     private val launcher = registerImagePicker { images ->
         if(images.isNotEmpty()){
             val sampleImage = images[0]
+            (parentFragment as ReportFragment).imgUri = sampleImage.uri
             Glide.with(requireContext())
                 .load(sampleImage.uri)
                 .transform(CenterCrop(), RoundedCorners(20.px))
@@ -53,6 +54,7 @@ class Report2Fragment : Fragment() {
         }
 
         binding.etDetail.afterTextChanged { text ->
+            (parentFragment as ReportFragment).description = text.toString()
             if(text.toString().isEmpty()) {
                 binding.etDetail.setBackgroundResource(R.drawable.bg_rectangle_empty_7e7e7e_radius_14)
             } else {
