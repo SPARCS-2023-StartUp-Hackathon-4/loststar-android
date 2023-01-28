@@ -132,7 +132,7 @@
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
-                app:layout_constraintEnd_toStartOf="@id/card_view_profile"
+                app:layout_constraintEnd_toStartOf="@id/card_view_chatting"
                 app:layout_constraintStart_toEndOf="@id/card_view_report"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -161,6 +161,48 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/iv_store" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_chatting"
+                android:layout_width="48dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toStartOf="@id/card_view_profile"
+                app:layout_constraintStart_toEndOf="@id/card_view_store"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_chatting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_menu_store_inactive"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_chatting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pre_medium_500"
+                        android:text="채팅"
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_chatting" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

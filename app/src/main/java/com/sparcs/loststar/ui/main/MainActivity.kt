@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
             binding.cardViewHome,
             binding.cardViewReport,
             binding.cardViewStore,
+            binding.cardViewChatting,
             binding.cardViewProfile
         )
     }
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivHome,
             binding.ivReport,
             binding.ivStore,
+            binding.ivChatting,
             binding.ivProfile
         )
     }
@@ -41,11 +43,16 @@ class MainActivity : AppCompatActivity() {
             binding.tvHome,
             binding.tvReport,
             binding.tvStore,
+            binding.tvChatting,
             binding.tvProfile
         )
     }
 
-    private val viewpagerFragmentAdapter: ViewpagerFragmentAdapter by lazy { ViewpagerFragmentAdapter(this) }
+    private val viewpagerFragmentAdapter: ViewpagerFragmentAdapter by lazy {
+        ViewpagerFragmentAdapter(
+            this
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,24 +68,25 @@ class MainActivity : AppCompatActivity() {
             vp.adapter = viewpagerFragmentAdapter
             vp.isUserInputEnabled = false
 
-                cardViewHome.setOnClickListener {
-                    setStatusBarColorBlack()
-                    vp.setCurrentItem(0, false)
-                    initBottomNavi()
-                    cardViewHome.setCardBackgroundColor(
-                        ContextCompat.getColor(
-                            this@MainActivity,
-                            R.color.color_f9f9f9
-                        )
+            cardViewHome.setOnClickListener {
+                setStatusBarColorBlack()
+                vp.setCurrentItem(0, false)
+                initBottomNavi()
+                cardViewHome.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this@MainActivity,
+                        R.color.color_f9f9f9
                     )
-                    ivHome.setImageResource(R.drawable.ic_menu_home_active)
-                    tvHome.typeface =
-                        ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
-                }
+                )
+                ivHome.setImageResource(R.drawable.ic_menu_home_active)
+                tvHome.typeface =
+                    ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
+            }
 
             cardViewReport.setOnClickListener {
                 setStatusBarColorGray()
-                WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+                WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
+                    true
                 vp.setCurrentItem(1, false)
                 initBottomNavi()
                 cardViewReport.setCardBackgroundColor(
@@ -107,9 +115,24 @@ class MainActivity : AppCompatActivity() {
                     ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
             }
 
-            cardViewProfile.setOnClickListener {
+            cardViewChatting.setOnClickListener {
                 setStatusBarColorGray()
                 vp.setCurrentItem(3, false)
+                initBottomNavi()
+                cardViewChatting.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this@MainActivity,
+                        R.color.color_f9f9f9
+                    )
+                )
+                ivChatting.setImageResource(R.drawable.ic_menu_store_active)
+                tvChatting.typeface =
+                    ResourcesCompat.getFont(this@MainActivity, R.font.pre_semibold_600)
+            }
+
+            cardViewProfile.setOnClickListener {
+                setStatusBarColorGray()
+                vp.setCurrentItem(4, false)
                 initBottomNavi()
                 cardViewProfile.setCardBackgroundColor(
                     ContextCompat.getColor(
@@ -132,7 +155,8 @@ class MainActivity : AppCompatActivity() {
         bottomIconList[0].setImageResource(R.drawable.ic_menu_home_inactive)
         bottomIconList[1].setImageResource(R.drawable.ic_menu_report_inactive)
         bottomIconList[2].setImageResource(R.drawable.ic_menu_store_inactive)
-        bottomIconList[3].setImageResource(R.drawable.ic_menu_profile_inactive)
+        bottomIconList[3].setImageResource(R.drawable.ic_menu_store_inactive)
+        bottomIconList[4].setImageResource(R.drawable.ic_menu_profile_inactive)
 
         bottomTextViewList.forEach { textView ->
             textView.typeface = ResourcesCompat.getFont(this, R.font.pre_medium_500)
