@@ -21,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
 
@@ -72,8 +73,19 @@ class LoginActivity : AppCompatActivity() {
                     val acToken = data.accessToken
                     CoroutineScope(Main).launch {
                         LostStarApplication.encryptedPrefs.saveAccessToken(acToken)
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
+
+                        withContext(IO) {
+                            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                                LostStarApplication.prefs.setString("userId", data.id.toString())
+                                val a = LostStarApplication.prefs.getString("userId", "")
+                                Log.d("테스트","저장된 userId $a")
+
+                                CoroutineScope(Main).launch {
+                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                    finish()
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/Infocircle"
+                    android:src="@drawable/a_infocircle"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginEnd="6dp"/>
@@ -266,6 +266,7 @@
 
 
             <Button
+                android:id="@+id/chat_create_btn"
                 android:text="연락하기"
                 android:backgroundTint="@color/black"
                 android:fontFamily="@font/pre_medium_500"

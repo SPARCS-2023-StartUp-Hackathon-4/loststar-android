@@ -163,7 +163,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </com.sparcs.loststar.util.StickyNestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
