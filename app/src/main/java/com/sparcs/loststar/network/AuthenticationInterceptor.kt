@@ -13,7 +13,7 @@ class AuthenticationInterceptor@Inject constructor() : Interceptor {
             .addHeader("Authorization", "Bearer $accessToken").build()
         Log.d(
             RETROFIT_TAG,
-            "AuthenticationInterceptor - intercept() called / request header: ${request.headers}"
+            "AuthenticationInterceptor - intercept() called / request header: ${accessToken}"
         )
         return chain.proceed(request)
     }

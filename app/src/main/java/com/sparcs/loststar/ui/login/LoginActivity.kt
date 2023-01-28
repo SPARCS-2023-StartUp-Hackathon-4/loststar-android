@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.skydoves.sandwich.onSuccess
+import com.sparcs.loststar.LostStarApplication
 import com.sparcs.loststar.databinding.ActivityLoginBinding
 import com.sparcs.loststar.network.RetrofitClient
+import com.sparcs.loststar.network.model.KakaoLoginRequest
 import com.sparcs.loststar.ui.main.MainActivity
 import com.sparcs.loststar.util.GlideUtil
 import kotlinx.coroutines.CoroutineScope
@@ -26,13 +30,26 @@ class LoginActivity : AppCompatActivity() {
         ActivityLoginBinding.inflate(layoutInflater)
     }
 
+    private var kakaoToken = ""
+    private var fcmToken = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        var keyHash = Utility.getKeyHash(this)
+        Log.d("kakao","키 해시 값 : $keyHash")
+
         //TODO 테스트 시 제거
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-        finish()
+        CoroutineScope(IO).launch {
+            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                CoroutineScope(Main).launch {
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    finish()
+                }
+            }
+        }
+
 
         // 연결 끊기
 //        UserApiClient.instance.unlink { error ->
@@ -45,9 +62,13 @@ class LoginActivity : AppCompatActivity() {
 //        }
 
         binding.btnKakao.setOnClickListener {
-            kakaoLoginAndGetProfileUrl {
-                doWhenLoginSuccess()
+            FirebaseMessaging.getInstance().token.addOnSuccessListener {
+                fcmToken = it
+                kakaoLoginAndGetProfileUrl {
+                    doWhenLoginSuccess()
+                }
             }
+
         }
     }
 
@@ -56,9 +77,11 @@ class LoginActivity : AppCompatActivity() {
         getUserProfileUrl { url ->
             GlideUtil.loadImage(binding.ivUserProfile, url)
             CoroutineScope(IO).launch {
-                RetrofitClient.getApiService().fetchCategories().onSuccess {
+                RetrofitClient.getApiService().kakaoLogin(KakaoLoginRequest(kakaoToken, "강남", url, fcmToken)).onSuccess {
                     Log.d("테스트", "통신 성공")
+                    val acToken = data.accessToken
                     CoroutineScope(Main).launch {
+                        LostStarApplication.encryptedPrefs.saveAccessToken(acToken)
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         finish()
                     }
@@ -95,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
-
+                    kakaoToken = token.accessToken
                     onSuccess()
                 }
             }
@@ -109,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
             Log.d(TAG, "카카오계정으로 로그인 실패", error)
         } else if (token != null) {
             Log.d(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
-
+            kakaoToken = token.accessToken
             //TODO 로그인 성공 시 수행할 것
             doWhenLoginSuccess()
         }
