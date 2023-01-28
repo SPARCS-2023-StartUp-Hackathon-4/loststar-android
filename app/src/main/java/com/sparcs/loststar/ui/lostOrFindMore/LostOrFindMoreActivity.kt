@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.ActivityLoginBinding
 import com.sparcs.loststar.databinding.ActivityLostOrFindMoreBinding
+import com.sparcs.loststar.network.RetrofitClient
+import com.sparcs.loststar.network.model.LostFound
 import com.sparcs.loststar.network.model.TestLostOrFind
 import com.sparcs.loststar.ui.home.adapter.LostOrFindRecyclerViewAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LostOrFindMoreActivity : AppCompatActivity() {
 
@@ -28,20 +34,15 @@ class LostOrFindMoreActivity : AppCompatActivity() {
         val rvMainAdapter = LostOrFindRecyclerViewAdapter()
         binding.rvMain.adapter = rvMainAdapter
 
-        val list2 = listOf(
-            TestLostOrFind(1,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(2,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(3,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(4,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(5,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(6,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(7,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(8,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(9,"","테스트",100,"2020","11:30","우리집"),
-            TestLostOrFind(10,"","테스트",100,"2020","11:30","우리집"),
-        )
-
-        rvMainAdapter.submitList(list2)
+        CoroutineScope(Dispatchers.IO).launch {
+            RetrofitClient.getApiService().getList(
+                type = LostFound.FOUND.name, location = "강남"
+            ).onSuccess {
+                CoroutineScope(Dispatchers.Main).launch {
+                    rvMainAdapter.submitList(data.content)
+                }
+            }
+        }
 
         binding.ivFilter.setOnClickListener {
             binding.viewShadow.visibility = View.VISIBLE
