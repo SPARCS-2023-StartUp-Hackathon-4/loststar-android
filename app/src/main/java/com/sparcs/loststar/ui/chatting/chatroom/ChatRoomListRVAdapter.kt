@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sparcs.loststar.R
 import com.sparcs.loststar.util.GlideUtil
 import com.sparcs.loststar.util.PreferenceUtil
+import com.sparcs.loststar.util.px
 
 class ChatRoomListRVAdapter(val items: MutableList<ChatRoomInfoModel>) :
     RecyclerView.Adapter<ChatRoomListRVAdapter.ViewHolder>() {
@@ -67,7 +68,7 @@ class ChatRoomListRVAdapter(val items: MutableList<ChatRoomInfoModel>) :
         private val lostImg : ImageView = itemView.findViewById(R.id.rv_chat_title_img)
 
         fun bindItems(item: ChatRoomInfoModel) {
-            GlideUtil.loadImage(lostImg, item.lostAndFoundImg)
+            GlideUtil.loadRadiusImage(lostImg, item.lostAndFoundImg, 16.px)
             title.text = item.lostAndFoundTitle
             nickname.text = item.senderNickname
             address.text = item.senderAddress
