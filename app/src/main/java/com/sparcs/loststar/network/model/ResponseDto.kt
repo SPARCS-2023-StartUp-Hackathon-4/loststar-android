@@ -4,6 +4,10 @@ data class IdResponse(
     val id: Long,
 )
 
+data class ImageResponse(
+    val image: String
+)
+
 data class LostFoundRequest(
     val type: String,
     val title: String,
@@ -28,7 +32,7 @@ data class PageResponse<T>(
 }
 
 data class LostFoundResponse(
-    val writer: MyInfoResponse,
+    val writer: UserDto,
     val title: String,
     val category: String,
     val location: String,

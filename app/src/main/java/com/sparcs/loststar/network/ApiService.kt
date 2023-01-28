@@ -2,11 +2,8 @@ package com.sparcs.loststar.network
 
 import com.skydoves.sandwich.ApiResponse
 import com.sparcs.loststar.network.model.*
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -28,12 +25,15 @@ interface ApiService {
     suspend fun kakaoLogin(@Body request: KakaoLoginRequest): ApiResponse<KakaoLoginResponse>
 
     @GET("/users/me")
-    suspend fun fetchMyInfo(): ApiResponse<MyInfoResponse>
+    suspend fun fetchMyInfo(): ApiResponse<UserDto>
 
     @GET("/lost-found/{id}")
     suspend fun getLostOrFound(@Path("id") id: Int): ApiResponse<LostFoundResponse>
 
     @POST("/lost-found")
     suspend fun postLostOrFound(@Body request: LostFoundRequest): ApiResponse<IdResponse>
+
+    @POST("/upload")
+    suspend fun uploadImage(@Part("image") image: MultipartBody.Part): ApiResponse<ImageResponse>
 
 }
