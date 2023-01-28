@@ -1,6 +1,7 @@
 package com.sparcs.loststar.ui.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,6 +10,7 @@ import com.sparcs.loststar.databinding.ItemRecyclerLostFindBinding
 import com.sparcs.loststar.network.model.CardResponse
 import com.sparcs.loststar.network.model.TestEmergency
 import com.sparcs.loststar.network.model.TestLostOrFind
+import com.sparcs.loststar.ui.chatting.chatroom.ChatRoomListRVAdapter
 import com.sparcs.loststar.util.GlideUtil
 
 
@@ -25,8 +27,14 @@ class LostOrFindRecyclerViewAdapter() : ListAdapter<CardResponse, LostOrFindRecy
     inner class LostOrFindHolder(private val binding: ItemRecyclerLostFindBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun setData(data: CardResponse) {
+            binding.root.setOnClickListener {
+                itemClick?.onClick(
+                    data.id.toInt()
+                )
+            }
             binding.tvTitle.text = data.title
-            binding.tvStar.text = data.reward.toString()
+            binding.tvStar.text = data.reward
+            GlideUtil.loadRadiusImage(binding.ivMain, data.image, 8)
             binding.tvDate.text = "${data.date} | ${data.time}"
             binding.tvLocation.text = data.location
             GlideUtil.loadRadiusImage(binding.ivMain, data.image, 16)
@@ -47,4 +55,12 @@ class LostOrFindRecyclerViewAdapter() : ListAdapter<CardResponse, LostOrFindRecy
             }
         }
     }
+
+
+    interface ItemClick {
+        fun onClick(id: Int)
+    }
+
+    var itemClick: ItemClick? = null
+
 }

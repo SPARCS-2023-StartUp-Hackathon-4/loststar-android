@@ -28,16 +28,18 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
-                CoroutineScope(Dispatchers.Main).launch {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                    finish()
-                }
-            }.onFailure {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-            }
-        }
+        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+
+//        CoroutineScope(Dispatchers.IO).launch {
+//            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+//                CoroutineScope(Dispatchers.Main).launch {
+//                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+//                    finish()
+//                }
+//            }.onFailure {
+//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+//            }
+//        }
 
 
     }

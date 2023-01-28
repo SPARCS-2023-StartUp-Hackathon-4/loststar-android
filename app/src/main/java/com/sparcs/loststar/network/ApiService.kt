@@ -1,22 +1,14 @@
 package com.sparcs.loststar.network
 
 import com.skydoves.sandwich.ApiResponse
-import com.sparcs.loststar.network.model.CardResponse
-import com.sparcs.loststar.network.model.CategoriesResponse
-import com.sparcs.loststar.network.model.KakaoLoginRequest
-import com.sparcs.loststar.network.model.KakaoLoginResponse
-import com.sparcs.loststar.network.model.ListResponse
-import com.sparcs.loststar.network.model.MyInfoResponse
-import com.sparcs.loststar.network.model.PageResponse
+import com.sparcs.loststar.network.model.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-
-    @GET("/api/categories")
-    suspend fun fetchCategories(): ApiResponse<CategoriesResponse>
 
     @GET("/lost-found/boosts")
     suspend fun getBoosts(
@@ -35,7 +27,10 @@ interface ApiService {
     @POST("/kakao")
     suspend fun kakaoLogin(@Body request: KakaoLoginRequest): ApiResponse<KakaoLoginResponse>
 
-    @GET("users/me")
+    @GET("/users/me")
     suspend fun fetchMyInfo(): ApiResponse<MyInfoResponse>
+
+    @GET("/lost-found/{id}")
+    suspend fun getLostOrFound(@Path("id") id: Int): ApiResponse<LostFoundResponse>
 
 }
