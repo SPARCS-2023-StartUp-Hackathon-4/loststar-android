@@ -1,5 +1,6 @@
 package com.sparcs.loststar.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.sparcs.loststar.network.model.TestEmergency
 import com.sparcs.loststar.network.model.TestLostOrFind
 import com.sparcs.loststar.ui.home.adapter.EmergencyRecyclerViewAdapter
 import com.sparcs.loststar.ui.home.adapter.LostOrFindRecyclerViewAdapter
+import com.sparcs.loststar.ui.lostOrFindMore.LostOrFindMoreActivity
 import com.sparcs.loststar.util.CenterZoomLinearLayoutManager
 
 class HomeFragment : Fragment() {
@@ -80,6 +82,10 @@ class HomeFragment : Fragment() {
                 setBackgroundColorBlack()
                 changeLayoutColorLight()
             }
+        }
+
+        binding.btnMore.setOnClickListener {
+            startActivity(Intent(requireContext(), LostOrFindMoreActivity::class.java))
         }
     }
 
