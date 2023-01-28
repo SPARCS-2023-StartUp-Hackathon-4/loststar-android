@@ -100,10 +100,19 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), LostOrFindMoreActivity::class.java))
         }
 
-        // sub 카드 클릭
+        // sub 카드 클릭 -> 상세 화면 이동
         rvSubAdapter.itemClick = object : LostOrFindRecyclerViewAdapter.ItemClick {
             override fun onClick(id: Int) {
                 val intent = Intent( binding.rvSub.context, LostOrFindDetailActivity::class.java)
+                intent.putExtra("id", id)
+                context?.startActivity(intent)
+            }
+        }
+
+        // emergency 카드 클릭 -> 상세 화면 이동
+        rvEmergencyAdapter.itemClick = object : EmergencyRecyclerViewAdapter.ItemClick {
+            override fun onClick(id: Int) {
+                val intent = Intent( binding.rvEmergency.context, LostOrFindDetailActivity::class.java)
                 intent.putExtra("id", id)
                 context?.startActivity(intent)
             }

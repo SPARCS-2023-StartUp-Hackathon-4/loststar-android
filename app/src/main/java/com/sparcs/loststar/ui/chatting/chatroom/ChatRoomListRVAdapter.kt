@@ -63,12 +63,12 @@ class ChatRoomListRVAdapter(val items: MutableList<ChatRoomInfoModel>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nickname: TextView = itemView.findViewById(R.id.rv_chat_nickname)
         private val address: TextView = itemView.findViewById(R.id.rv_chat_address)
-        private val lostItemCategory : TextView = itemView.findViewById(R.id.rv_chat_title)
+        private val title : TextView = itemView.findViewById(R.id.rv_chat_title)
         private val lostImg : ImageView = itemView.findViewById(R.id.rv_chat_title_img)
 
         fun bindItems(item: ChatRoomInfoModel) {
             GlideUtil.loadImage(lostImg, item.lostAndFoundImg)
-            lostItemCategory.text = item.lostItemCategory
+            title.text = item.lostAndFoundTitle
             nickname.text = item.senderNickname
             address.text = item.senderAddress
         }

@@ -19,6 +19,7 @@ class LostOrFindDetailActivity : AppCompatActivity() {
     private var senderInfo: UserDto = UserDto()
     private var receiverInfo: UserDto = UserDto()
     private var lostFoundImage: String = ""
+    private var lostFoundTitle: String = ""
 
     private val binding: ActivityLostOrFindDetailBinding by lazy {
         ActivityLostOrFindDetailBinding.inflate(layoutInflater)
@@ -41,6 +42,7 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                         address = data.writer.address
                     )
                     lostFoundImage = data.image
+                    lostFoundTitle = data.title
                     Log.d("분실물 상세 : receiverInfo", receiverInfo.toString())
                     Log.d("분실물 상세 : 이미지", lostFoundImage)
                 }
@@ -76,12 +78,11 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                     receiverNickname = receiverInfo.nickname,
                     receiverProfile = "https://image.ytn.co.kr/general/jpg/2022/1118/202211181457199274_d.jpg",
                     receiverAddress = receiverInfo.address,
-                    lostAndFoundId = "",
+                    lostAndFoundTitle = lostFoundTitle,
                     lostAndFoundImg = lostFoundImage
                 )
             )
-            // 채팅방 리스트 엑티비티로 이동
-            startActivity(intent)
+            finish()
         }
     }
 
@@ -99,7 +100,7 @@ class LostOrFindDetailActivity : AppCompatActivity() {
                     roomKey.senderNickname,
                     roomKey.senderProfile,
                     roomKey.senderAddress,
-                    roomKey.lostAndFoundId,
+                    roomKey.lostAndFoundTitle,
                     roomKey.lostAndFoundImg
                 )
             )

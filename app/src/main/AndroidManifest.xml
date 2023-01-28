@@ -20,7 +20,7 @@
             android:name=".ui.lostOrFindDetail.LostOrFindDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatInsideActivity"
+            android:name=".ui.chatting.chat.ChatInsideActivity"
             android:exported="false" />
         <activity
             android:name=".ui.lostOrFindMore.LostOrFindMoreActivity"
