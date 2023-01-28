@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             vp.adapter = viewpagerFragmentAdapter
             vp.isUserInputEnabled = false
             vp.isSaveEnabled = false
+            vp.isSaveFromParentEnabled = false
 
             cardViewHome.setOnClickListener {
                 setStatusBarColorBlack()
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewReport.setOnClickListener {
+                setStatusBarColorBlack()
                 vp.setCurrentItem(1, false)
                 initBottomNavi()
                 cardViewReport.setCardBackgroundColor(
@@ -98,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewStore.setOnClickListener {
+                setStatusBarColorBlack()
                 vp.setCurrentItem(2, false)
                 initBottomNavi()
                 cardViewStore.setCardBackgroundColor(
@@ -127,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewProfile.setOnClickListener {
+                setStatusBarColorBlack()
                 vp.setCurrentItem(4, false)
                 initBottomNavi()
                 cardViewProfile.setCardBackgroundColor(
