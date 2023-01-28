@@ -8,6 +8,7 @@ import android.util.Log
 import com.kakao.sdk.common.util.Utility
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.onSuccess
+import com.sparcs.loststar.LostStarApplication
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.ActivitySplashBinding
 import com.sparcs.loststar.network.RetrofitClient
@@ -28,6 +29,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+//        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+//        finish()
+
         CoroutineScope(Dispatchers.IO).launch {
             RetrofitClient.getApiService().fetchMyInfo().onSuccess {
                 CoroutineScope(Dispatchers.Main).launch {
@@ -35,7 +39,9 @@ class SplashActivity : AppCompatActivity() {
                     finish()
                 }
             }.onFailure {
+                LostStarApplication.encryptedPrefs.saveAccessToken("")
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                finish()
             }
         }
 

@@ -80,9 +80,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewReport.setOnClickListener {
-                setStatusBarColorGray()
-                WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
-                    true
                 vp.setCurrentItem(1, false)
                 initBottomNavi()
                 cardViewReport.setCardBackgroundColor(
@@ -97,7 +94,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewStore.setOnClickListener {
-                setStatusBarColorGray()
                 vp.setCurrentItem(2, false)
                 initBottomNavi()
                 cardViewStore.setCardBackgroundColor(
@@ -112,7 +108,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewChatting.setOnClickListener {
-                setStatusBarColorGray()
                 vp.setCurrentItem(3, false)
                 initBottomNavi()
                 cardViewChatting.setCardBackgroundColor(
@@ -127,7 +122,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             cardViewProfile.setOnClickListener {
-                setStatusBarColorGray()
                 vp.setCurrentItem(4, false)
                 initBottomNavi()
                 cardViewProfile.setCardBackgroundColor(
@@ -161,7 +155,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setStatusBarColorBlack() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.color_1c1c1e)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
     }
 
