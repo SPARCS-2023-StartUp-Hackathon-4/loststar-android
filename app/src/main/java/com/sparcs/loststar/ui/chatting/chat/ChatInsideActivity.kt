@@ -14,9 +14,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.R
+import com.sparcs.loststar.network.RetrofitClient
+import com.sparcs.loststar.network.model.UserDto
 import com.sparcs.loststar.util.FBRef
 import com.sparcs.loststar.util.PreferenceUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,10 +40,21 @@ class ChatInsideActivity : AppCompatActivity() {
     lateinit var chat_rvAdapter: ChatListRVAdapter
 
     val userid = PreferenceUtil.prefs.getString("userid", "")
+    var nickname: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_inside)
+
+        // sender 정보 조회
+        CoroutineScope(Dispatchers.IO).launch {
+            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                CoroutineScope(Dispatchers.Main).launch {
+                    nickname = data.nickname
+                    Log.d("ChatInsideActivity 닉네임 저장", nickname)
+                }
+            }
+        }
 
         roomKey = intent.getStringExtra("roomKey").toString()
 
@@ -55,7 +72,7 @@ class ChatInsideActivity : AppCompatActivity() {
         inputBtn.setOnClickListener {
             Handler().postDelayed({
                 if (inputText.text.toString() == null) {
-                    Toast.makeText(this, "채팅을 입력해주세요", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "채팅을 입력해 주세요", Toast.LENGTH_SHORT).show()
                 } else {
                     insertChat(roomKey, inputText.text.toString())
                 }
@@ -73,6 +90,8 @@ class ChatInsideActivity : AppCompatActivity() {
             // 모달 창 띄워주기
             // finish()
         }
+        
+        
     }
 
     private fun insertChat(roomKey: String?, inputText: String) {
@@ -83,7 +102,7 @@ class ChatInsideActivity : AppCompatActivity() {
                 .push()
                 .setValue(
                     ChatModel(
-                        userid,
+                        nickname,
                         inputText,
                         curTime
                     )
