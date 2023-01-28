@@ -51,6 +51,8 @@ class Report1Fragment : Fragment() {
                     textViewList[idx].setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                     editTextList[idx].setBackgroundResource(R.drawable.bg_rectangle_empty_white_radius_14)
                 }
+
+                (parentFragment as ReportFragment).nextButton.isEnabled = idx == 5 && text.isNotEmpty()
             }
         }
     }
@@ -68,6 +70,6 @@ class Report1Fragment : Fragment() {
 
         initEditTextLayoutSetting()
 
-        (parentFragment as ReportFragment).nextButton.isEnabled = false
+
     }
 }

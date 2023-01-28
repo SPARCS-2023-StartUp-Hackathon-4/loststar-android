@@ -19,6 +19,7 @@ class ReportFragment : Fragment() {
     val nextButton: AppCompatButton by lazy {
         binding.buttonNext
     }
+    private var currentPage = 0
 
     private val viewpagerFragmentAdapter: ReportViewpagerFragmentAdapter by lazy {
         ReportViewpagerFragmentAdapter(
@@ -38,5 +39,11 @@ class ReportFragment : Fragment() {
 
         binding.vp.adapter = viewpagerFragmentAdapter
         binding.vp.isUserInputEnabled = false
+
+        binding.buttonNext.setOnClickListener {
+            binding.vp.setCurrentItem(++currentPage, true)
+            if(currentPage == 1) binding.progress2.visibility = View.VISIBLE
+            if(currentPage == 2) binding.progress3.visibility = View.VISIBLE
+        }
     }
 }
