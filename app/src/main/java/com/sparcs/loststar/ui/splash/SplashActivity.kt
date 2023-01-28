@@ -6,9 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.kakao.sdk.common.util.Utility
+import com.skydoves.sandwich.onFailure
+import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.R
 import com.sparcs.loststar.databinding.ActivitySplashBinding
+import com.sparcs.loststar.network.RetrofitClient
 import com.sparcs.loststar.ui.login.LoginActivity
+import com.sparcs.loststar.ui.main.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -21,6 +28,17 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        startActivity(Intent(this, LoginActivity::class.java))
+        CoroutineScope(Dispatchers.IO).launch {
+            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
+                CoroutineScope(Dispatchers.Main).launch {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
+                }
+            }.onFailure {
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            }
+        }
+
+
     }
 }

@@ -3,8 +3,12 @@ package com.sparcs.loststar.network
 import com.skydoves.sandwich.ApiResponse
 import com.sparcs.loststar.network.model.CardResponse
 import com.sparcs.loststar.network.model.CategoriesResponse
+import com.sparcs.loststar.network.model.KakaoLoginRequest
+import com.sparcs.loststar.network.model.KakaoLoginResponse
 import com.sparcs.loststar.network.model.ListResponse
+import com.sparcs.loststar.network.model.MyInfoResponse
 import com.sparcs.loststar.network.model.PageResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query

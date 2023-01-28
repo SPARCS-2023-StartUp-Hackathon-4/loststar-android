@@ -40,16 +40,6 @@ class LoginActivity : AppCompatActivity() {
         var keyHash = Utility.getKeyHash(this)
         Log.d("kakao","키 해시 값 : $keyHash")
 
-        //TODO 테스트 시 제거
-        CoroutineScope(IO).launch {
-            RetrofitClient.getApiService().fetchMyInfo().onSuccess {
-                CoroutineScope(Main).launch {
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    finish()
-                }
-            }
-        }
-
 
         // 연결 끊기
 //        UserApiClient.instance.unlink { error ->

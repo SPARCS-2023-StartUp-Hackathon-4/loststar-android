@@ -56,13 +56,13 @@ class HomeFragment : Fragment() {
         }
 
 
-
-        // 첫 홈 화면 진입시 긴급 글 가져오기
-        fetchEmergencyList(LostFound.FOUND, rvEmergencyAdapter)
-
         binding.rvSub.layoutManager = LinearLayoutManager(requireContext())
         val rvSubAdapter = LostOrFindRecyclerViewAdapter()
         binding.rvSub.adapter = rvSubAdapter
+
+        // 첫 홈 화면 진입시 긴급 글 가져오기
+        fetchEmergencyList(LostFound.LOST, rvEmergencyAdapter)
+        fetchList(Location.강남.name, LostFound.LOST, rvSubAdapter)
 
         // 유실물 긴급, 서브
         binding.rbFind.setOnClickListener {
