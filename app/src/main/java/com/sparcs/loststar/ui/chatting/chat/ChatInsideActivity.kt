@@ -1,13 +1,15 @@
 package com.sparcs.loststar.ui.chatting.chat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -17,15 +19,14 @@ import com.google.firebase.database.ValueEventListener
 import com.skydoves.sandwich.onSuccess
 import com.sparcs.loststar.R
 import com.sparcs.loststar.network.RetrofitClient
-import com.sparcs.loststar.network.model.UserDto
 import com.sparcs.loststar.util.FBRef
 import com.sparcs.loststar.util.PreferenceUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ChatInsideActivity : AppCompatActivity() {
     private var roomKey = ""
@@ -78,6 +79,22 @@ class ChatInsideActivity : AppCompatActivity() {
                 }
             }, 100)
         }
+
+        inputText.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            when (keyCode) {
+                KeyEvent.KEYCODE_ENTER -> {
+                    Handler().postDelayed({
+                        if (inputText.text.toString() == null) {
+                            Toast.makeText(this, "채팅을 입력해 주세요", Toast.LENGTH_SHORT).show()
+                        } else {
+                            insertChat(roomKey, inputText.text.toString().replace("\n", ""))
+                        }
+                    }, 100)
+                }
+            }
+            true
+        })
+
         val backBtn = findViewById<ImageView>(R.id.iv_messageBack)
         backBtn.setOnClickListener {
             databaseRef.removeEventListener(valueEvent)
